@@ -1,6 +1,6 @@
 package de.xima.fc.fuerth.employees;
 
-import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -32,8 +32,11 @@ public class CheckDatePluginTest {
 	}
 
 	@Test
-	public final void testDate() {
-		new SimpleDateFormat("k'k");
+	public final void testMessage() {
+		System.out.println(Messages.msg(CmnCnst.MSG_ERROR_DAO_STATE_LIST, Locale.ENGLISH));
+		System.out.println(Messages.fmt(CmnCnst.MSG_ERROR_DAO_STATE_LIST, Locale.ENGLISH, "myProject"));
+		System.out.println(Messages.msg(CmnCnst.MSG_ERROR_DAO_STATE_LIST, Locale.GERMAN));
+		System.out.println(Messages.fmt(CmnCnst.MSG_ERROR_DAO_STATE_LIST, Locale.GERMAN, "myProject"));
 	}
 
 }

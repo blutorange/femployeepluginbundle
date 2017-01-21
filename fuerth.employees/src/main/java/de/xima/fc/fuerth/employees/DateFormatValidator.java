@@ -15,19 +15,20 @@ public class DateFormatValidator implements Validator {
 
 	@Override
 	public void validate(final FacesContext fc, final UIComponent ui, final Object value) throws ValidatorException {
-		final FacesMessage msg = check(value);
+		final FacesMessage msg = check(value, fc.getExternalContext().getRequestLocale());
 		if (msg != null)
 			throw new ValidatorException(msg);
 	}
 
-	public static FacesMessage check(final Object value) {
+	public static FacesMessage check(final Object value, final Locale locale) {
 		if (value == null)
 			return null;
 		final String dateFormat = String.valueOf(value);
 		if (dateFormat.isEmpty())
 			return null;
 		try {
-			new SimpleDateFormat(dateFormat, Locale.ROOT);
+			@SuppressWarnings("unused")
+			final Object o = new SimpleDateFormat(dateFormat, Locale.ROOT);
 			return null;
 		}
 		catch (final IllegalArgumentException e) {
@@ -35,5 +36,4 @@ public class DateFormatValidator implements Validator {
 			return msg;
 		}
 	}
-
 }

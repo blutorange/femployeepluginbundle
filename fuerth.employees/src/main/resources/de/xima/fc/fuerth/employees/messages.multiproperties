@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MultiProperties xmlns="hu.skzs.multiproperties">
+    <Version>1.2</Version>
+    <Name>messages</Name>
+    <Description></Description>
+    <Handler>Java Properties Handler</Handler>
+    <Columns>
+        <Key>
+            <Width>200</Width>
+        </Key>
+        <Column>
+            <Name>default</Name>
+            <Description></Description>
+            <Width>330</Width>
+            <HandlerConfiguration>/fuerth.employees/src/main/resources/de/xima/fc/fuerth/employees/messages.properties|false|false|false|false</HandlerConfiguration>
+        </Column>
+        <Column>
+            <Name>en</Name>
+            <Description></Description>
+            <Width>231</Width>
+            <HandlerConfiguration>/fuerth.employees/src/main/resources/de/xima/fc/fuerth/employees/messages_en.properties|false|false|false|false</HandlerConfiguration>
+        </Column>
+        <Column>
+            <Name>de</Name>
+            <Description></Description>
+            <Width>370</Width>
+            <HandlerConfiguration>/fuerth.employees/src/main/resources/de/xima/fc/fuerth/employees/messages_de.properties|false|false|false|false</HandlerConfiguration>
+        </Column>
+    </Columns>
+    <Records>
+        <Property>
+            <Name>desc.due.date.format</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Format of the due date.</Value>
+            <Value disabled="false">Format of the due date.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>desc.due.state</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">The date when the form record is due. Use a variable (placeholder) to refer to a form field.</Value>
+            <Value disabled="false">The date when the form record is due. Use a variable (placeholder) to refer to a form field.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>desc.expire.time</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Controls when the form record is moved to the escalation state. Number of days before the form is due.</Value>
+            <Value disabled="false">Controls when the form record is moved to the escalation state. Number of days before the form is due.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>desc.plugin</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Checks whether the time difference between the current time and the time from the given form field is below the given threshold, and puts the forms record in the given state when it is.</Value>
+            <Value disabled="false">Checks whether the time difference between the current time and the time from the given form field is below the given threshold, and puts the forms record in the given state when it is.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>desc.target.state.expire</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">The name of the state the form is moved to when it is expired. Leave this empty and the state will not be changed.</Value>
+            <Value disabled="false">The name of the state the form is moved to when it is expired. Leave this empty and the state will not be changed.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>desc.target.state.not.expire</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">The name of the state the form is moved to when it is not expired. Leave this empty and the state will not be changed.</Value>
+            <Value disabled="false">The name of the state the form is moved to when it is not expired. Leave this empty and the state will not be changed.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>error.resource.acquisition</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Failed to acquire resource {0}.</Value>
+            <Value disabled="false">Failed to acquire resource {0}.</Value>
+            <Value disabled="false">Fehler beim Laden der Resource {0}.</Value>
+        </Property>
+        <Property>
+            <Name>error.dao.state.list</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Failed to get a list of states for this project {0}.</Value>
+            <Value disabled="false">Failed to get a list of states for this project {0}.</Value>
+            <Value disabled="false">Fehler beim Laden der Statusliste des Projekts {0}.</Value>
+        </Property>
+        <Property>
+            <Name>error.entity.context.null</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Entity context must not be null.</Value>
+            <Value disabled="false">Entity context must not be null.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>error.form.record.null</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Form record must not be null.</Value>
+            <Value disabled="false">Form record must not be null.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>error.invalid.date</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Failed to parse date {0} with format {1}.</Value>
+            <Value disabled="false">Failed to parse date {0} with format {1}.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>error.invalid.number</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Invalid number {0} given for expire.</Value>
+            <Value disabled="false">Invalid number {0} given for expire.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>error.no.such.parameter.get</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">No such parameter {0}, defaulting to {1}.</Value>
+            <Value disabled="false">No such parameter {0}, defaulting to {1}.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>error.no.such.parameter.set</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">No such parameter {0}, cannot set value {1}.</Value>
+            <Value disabled="false">No such parameter {0}, cannot set value {1}.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>error.no.such.state</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Did not find a state with id {0}.</Value>
+            <Value disabled="false">Did not find a state with id {0}.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>error.placeholder.replacer</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Failed to replace variables for string {0}.</Value>
+            <Value disabled="false">Failed to replace variables for string {0}.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>error.project.null</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Project must not be null.</Value>
+            <Value disabled="false">Project must not be null.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>error.wpc.null</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Workflow processing context must not be null.</Value>
+            <Value disabled="false">Workflow processing context must not be null.</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>name.check.date.plugin</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Check date plugin</Value>
+            <Value disabled="false">Check date plugin</Value>
+            <Value disabled="true"></Value>
+        </Property>
+        <Property>
+            <Name>name.due.date</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Due date</Value>
+            <Value disabled="false">Due date</Value>
+            <Value disabled="false">Fälligkeitsdatum</Value>
+        </Property>
+        <Property>
+            <Name>name.due.date.format</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Due date format</Value>
+            <Value disabled="false">Due date format</Value>
+            <Value disabled="false">Datumsformat</Value>
+        </Property>
+        <Property>
+            <Name>name.expire.time</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Expire time (days)</Value>
+            <Value disabled="false">Expire time (days)</Value>
+            <Value disabled="false">Ablaufzeit (Tage)</Value>
+        </Property>
+        <Property>
+            <Name>name.target.state.expire</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Target state (expired)</Value>
+            <Value disabled="false">Target state (expired)</Value>
+            <Value disabled="false">Zielstatus (abgelaufen)</Value>
+        </Property>
+        <Property>
+            <Name>name.target.state.not.expire</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Target state (not expired)</Value>
+            <Value disabled="false">Target state (not expired)</Value>
+            <Value disabled="false">Zielstatus (nicht abgelaufen)</Value>
+        </Property>
+    </Records>
+</MultiProperties>

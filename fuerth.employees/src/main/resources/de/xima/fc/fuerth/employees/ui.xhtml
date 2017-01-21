@@ -7,11 +7,10 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:xi="http://java.sun.com/jsf/composite/tags">
 
-
 	<xi:selectOneMenu required="false" var="state" itemValue="#{state}"
-		label="#{checkDatePluginBean.nameTargetStateExpire}" styleClass="top"
+		label="#{checkDatePluginBean.getNameTargetStateExpire(localeBean.getLocale())}" styleClass="top"
 		id="xm-plugin-check-date-target-state-expire"
-		title="#{checkDatePluginBean.descTargetStateExpire}"
+		title="#{checkDatePluginBean.getDescTargetStateExpire(localeBean.getLocale())}"
 		value="#{checkDatePluginBean.targetStateExpire}"
 		converter="FCEntityConverter" itemLable="#{state.name}"
 		options="#{checkDatePluginBean.stateList}">
@@ -19,9 +18,9 @@
 	</xi:selectOneMenu>
 
 	<xi:selectOneMenu required="false" var="state" itemValue="#{state}"
-		label="#{checkDatePluginBean.nameTargetStateNotExpire}"
+		label="#{checkDatePluginBean.getNameTargetStateNotExpire(localeBean.getLocale())}"
 		styleClass="top" id="xm-plugin-check-date-target-state-not-expire"
-		title="#{checkDatePluginBean.descTargetStateNotExpire}"
+		title="#{checkDatePluginBean.getDescTargetStateNotExpire(localeBean.getLocale())}"
 		value="#{checkDatePluginBean.targetStateNotExpire}"
 		converter="FCEntityConverter" itemLable="#{state.name}"
 		options="#{checkDatePluginBean.stateList}">
@@ -31,18 +30,18 @@
 	<xi:inputText
 		rendered="true"
 		formPlaceholder="true" styleClass="top" required="true"
-		label="#{checkDatePluginBean.nameExpireTime}"
-		title="#{checkDatePluginBean.descExpireTime}"
-		value="#{checkDatePluginBean.expireTime}">
+		label="#{checkDatePluginBean.getNameExpireTime(localeBean.getLocale())}"
+		title="#{checkDatePluginBean.getDescExpireTime(localeBean.getLocale())}"
+		value="#{checkDatePluginBean.getExpireTime()}">
 	</xi:inputText>
 	
 
 	<xi:inputText
 		rendered="true"
 		formPlaceholder="true" styleClass="top" required="true"
-		label="#{checkDatePluginBean.nameDueDate}"
-		title="#{checkDatePluginBean.descDueDate}"
-		value="#{checkDatePluginBean.dueDate}">
+		label="#{checkDatePluginBean.getNameDueDate(localeBean.getLocale())}"
+		title="#{checkDatePluginBean.getDescDueDate(localeBean.getLocale())}"
+		value="#{checkDatePluginBean.getDueDate()}">
 	</xi:inputText>
 	
 	
@@ -50,8 +49,8 @@
 	    id="xi-plugin-check-date-due-date-format"
 		rendered="true"
 		formPlaceholder="false" styleClass="top" required="true"
-		label="#{checkDatePluginBean.nameDueDateFormat}"
-		title="#{checkDatePluginBean.descDueDateFormat}"
-		value="#{checkDatePluginBean.dueDateFormat}">
+		label="#{checkDatePluginBean.getNameDueDateFormat(localeBean.getLocale())}"
+		title="#{checkDatePluginBean.getDescDueDateFormat(localeBean.getLocale())}"
+		value="#{checkDatePluginBean.getDueDateFormat()}">
 	</xi:inputText>
 </ui:composition>

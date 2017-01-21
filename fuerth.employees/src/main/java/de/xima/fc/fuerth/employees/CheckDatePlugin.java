@@ -1,5 +1,8 @@
 package de.xima.fc.fuerth.employees;
 
+import static de.xima.fc.fuerth.employees.Messages.fmt;
+import static de.xima.fc.fuerth.employees.Messages.msg;
+
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -37,15 +40,16 @@ public class CheckDatePlugin extends AFCPlugin
 		implements IPluginProcessing, IPluginConfigParamList, IDescriptionProvidingPlugin, IPluginCustomGUI {
 	private static final long serialVersionUID = 1L;
 	private final static Logger LOG = LoggerFactory.getLogger(CheckDatePlugin.class);
+	private Locale l = Locale.ROOT;
 
 	@Override
 	public String getName() {
-		return CmnCnst.NAME_CHECK_DATE_PLUGIN;
+		return msg(CmnCnst.MSG_NAME_CHECK_DATE_PLUGIN, l);
 	}
 
 	@Override
 	public void initPlugin() throws FCPluginException {
-		// no initialization required
+		l = Locale.ENGLISH;
 	}
 
 	@SuppressWarnings("resource") // We did not open the entity context.
@@ -53,19 +57,20 @@ public class CheckDatePlugin extends AFCPlugin
 	public IPluginProcessingRetVal execute(final IPluginProcessingParams params) throws FCPluginException {
 		final IWorkflowProcessingContext workflowProcessingContext = params.getWorkflowProcessingContext();
 		if (workflowProcessingContext == null) {
-			LOG.error(CmnCnst.ERROR_WORKFLOW_PROCESSING_CONTEXT_NULL);
-			return new ProcessingResultSuccess(false);
-		}
-		final IEntityContext entityContext = workflowProcessingContext.getEntityContext();
-		if (entityContext == null) {
-			LOG.error(CmnCnst.ERROR_ENTITY_CONTEXT_NULL);
+			LOG.error(msg(CmnCnst.MSG_ERROR_WORKFLOW_PROCESSING_CONTEXT_NULL, l));
 			return new ProcessingResultSuccess(false);
 		}
 		final Vorgang formRecord = workflowProcessingContext.getVorgang();
 		if (formRecord == null) {
-			LOG.error(CmnCnst.ERROR_FORM_RECORD_NULL);
+			LOG.error(msg(CmnCnst.MSG_ERROR_FORM_RECORD_NULL, l));
 			return new ProcessingResultSuccess(false);
 		}
+		final IEntityContext entityContext = workflowProcessingContext.getEntityContext();
+		if (entityContext == null) {
+			LOG.error(msg(CmnCnst.MSG_ERROR_ENTITY_CONTEXT_NULL, l));
+			return new ProcessingResultSuccess(false);
+		}
+
 
 		final Date dueDate = getDueDate(params, workflowProcessingContext);
 		if (dueDate == null)
@@ -92,18 +97,18 @@ public class CheckDatePlugin extends AFCPlugin
 			id = Integer.parseInt(targetStatusString);
 		}
 		catch (final NumberFormatException e) {
-			LOG.error(String.format(CmnCnst.ERROR_INVALID_NUMBER, targetStatusString), e);
+			LOG.error(fmt(CmnCnst.MSG_ERROR_INVALID_NUMBER, l, targetStatusString), e);
 			return new ProcessingResultSuccess(false);
 		}
 		try {
 			targetState = DaoProvider.STATUS_DAO.read(entityContext, id);
 		}
 		catch (final Exception e) {
-			LOG.error(CmnCnst.ERROR_DAO_STATE_LIST, e);
+			LOG.error(msg(CmnCnst.MSG_ERROR_DAO_STATE_LIST, l), e);
 			return new ProcessingResultSuccess(false);
 		}
 		if (targetState == null) {
-			LOG.error(String.format(CmnCnst.ERROR_NO_SUCH_STATE, targetStatusString));
+			LOG.error(fmt(CmnCnst.MSG_ERROR_NO_SUCH_STATE, l, targetStatusString));
 			return new ProcessingResultSuccess(false);
 		}
 		formRecord.setCurrentStatus(targetState);
@@ -118,7 +123,7 @@ public class CheckDatePlugin extends AFCPlugin
 			expire = Double.parseDouble(expireString);
 		}
 		catch (final NumberFormatException e) {
-			LOG.error(String.format(CmnCnst.ERROR_INVALID_NUMBER, expireString), e);
+			LOG.error(fmt(CmnCnst.MSG_ERROR_INVALID_NUMBER, l, expireString), e);
 			return null;
 		}
 		final long expireMillis = (long) (expire * CmnCnst.DAYS_TO_MS);
@@ -134,7 +139,7 @@ public class CheckDatePlugin extends AFCPlugin
 			dueDateStringReplaced = PlaceholderReplacer.parse(dueDateString, workflowProcessingContext);
 		}
 		catch (final Exception e) {
-			LOG.error(String.format(CmnCnst.ERROR_PLACEHOLDER_REPLACER, dueDateString), e);
+			LOG.error(fmt(CmnCnst.MSG_ERROR_PLACEHOLDER_REPLACER, l, dueDateString), e);
 			return null;
 		}
 		final DateFormat dateFormat = new SimpleDateFormat(dueDateFormat, Locale.ROOT);
@@ -143,7 +148,7 @@ public class CheckDatePlugin extends AFCPlugin
 			dueDate = dateFormat.parse(dueDateStringReplaced);
 		}
 		catch (final ParseException e) {
-			LOG.error(String.format(CmnCnst.ERROR_INVALID_DATE, dueDateStringReplaced, dueDateFormat), e);
+			LOG.error(fmt(CmnCnst.MSG_ERROR_INVALID_DATE, l, dueDateStringReplaced, dueDateFormat), e);
 			return null;
 		}
 		return dueDate;
@@ -152,17 +157,19 @@ public class CheckDatePlugin extends AFCPlugin
 	@Override
 	public Map<String, IPluginConfigParam> getConfigParameter() {
 		final Map<String, IPluginConfigParam> map = new HashMap<>();
-		map.put(CmnCnst.KEY_EXPIRE_TIME, new PluginConfigParam(CmnCnst.KEY_EXPIRE_TIME, CmnCnst.DESC_EXPIRE_TIME, true,
-				EPluginParamBehavior.IN, CmnCnst.DEFAULT_EXPIRE_TIME));
-		map.put(CmnCnst.KEY_TARGET_STATE_EXPIRE, new PluginConfigParam(CmnCnst.KEY_TARGET_STATE_EXPIRE,
-				CmnCnst.DESC_TARGET_STATE_EXPIRE, false, EPluginParamBehavior.IN, CmnCnst.DEFAULT_TARGET_STATE_EXPIRE));
+		map.put(CmnCnst.KEY_EXPIRE_TIME, new PluginConfigParam(CmnCnst.KEY_EXPIRE_TIME,
+				msg(CmnCnst.MSG_DESC_EXPIRE_TIME, l), true, EPluginParamBehavior.IN, CmnCnst.DEFAULT_EXPIRE_TIME));
+		map.put(CmnCnst.KEY_TARGET_STATE_EXPIRE,
+				new PluginConfigParam(CmnCnst.KEY_TARGET_STATE_EXPIRE, msg(CmnCnst.MSG_DESC_TARGET_STATE_EXPIRE, l), false,
+						EPluginParamBehavior.IN, CmnCnst.DEFAULT_TARGET_STATE_EXPIRE));
 		map.put(CmnCnst.KEY_TARGET_STATE_NOT_EXPIRE,
-				new PluginConfigParam(CmnCnst.KEY_TARGET_STATE_NOT_EXPIRE, CmnCnst.DESC_TARGET_STATE_NOT_EXPIRE, false,
-						EPluginParamBehavior.IN, CmnCnst.DEFAULT_TARGET_STATE_NOT_EXPIRE));
-		map.put(CmnCnst.KEY_DUE_DATE, new PluginConfigParam(CmnCnst.KEY_DUE_DATE, CmnCnst.DESC_DUE_DATE, true,
+				new PluginConfigParam(CmnCnst.KEY_TARGET_STATE_NOT_EXPIRE, msg(CmnCnst.MSG_DESC_TARGET_STATE_NOT_EXPIRE, l),
+						false, EPluginParamBehavior.IN, CmnCnst.DEFAULT_TARGET_STATE_NOT_EXPIRE));
+		map.put(CmnCnst.KEY_DUE_DATE, new PluginConfigParam(CmnCnst.KEY_DUE_DATE, msg(CmnCnst.MSG_DESC_DUE_DATE, l), true,
 				EPluginParamBehavior.IN, CmnCnst.DEFAULT_DUE_DATE));
-		map.put(CmnCnst.KEY_DUE_DATE_FORMAT, new PluginConfigParam(CmnCnst.KEY_DUE_DATE_FORMAT,
-				CmnCnst.DESC_DUE_DATE_FORMAT, true, EPluginParamBehavior.IN, CmnCnst.DEFAULT_DUE_DATE_FORMAT));
+		map.put(CmnCnst.KEY_DUE_DATE_FORMAT,
+				new PluginConfigParam(CmnCnst.KEY_DUE_DATE_FORMAT, msg(CmnCnst.MSG_DESC_DUE_DATE_FORMAT, l), true,
+						EPluginParamBehavior.IN, CmnCnst.DEFAULT_DUE_DATE_FORMAT));
 		return map;
 	}
 
@@ -176,12 +183,16 @@ public class CheckDatePlugin extends AFCPlugin
 
 	@Override
 	public String getDescription() {
-		return CmnCnst.DESC_PLUGIN;
+		return msg(CmnCnst.MSG_DESC_PLUGIN, l);
 	}
 
 	@Override
 	public String getConfigPage() {
-		final URL url = getClass().getResource("/ui.xhtml");
+		final URL url = getClass().getResource(CmnCnst.PATH_CUSTOM_UI);
+		if (url == null) {
+			LOG.error(fmt(CmnCnst.MSG_ERROR_RESOURCE_ACQUISTION, l, CmnCnst.PATH_CUSTOM_UI));
+			return StringUtils.EMPTY;
+		}
 		return url.toExternalForm();
 	}
 
