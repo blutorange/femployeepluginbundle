@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>de.xima.fc</groupId>
+	<artifactId>fuerth.employees</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>fuerth.employees</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<xfc-version>4.5.2</xfc-version>
+		<maven-compiler-plugin-version>3.6.0</maven-compiler-plugin-version>
+		<maven-jar-plugin-version>3.0.2</maven-jar-plugin-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven-compiler-plugin-version>3.3</maven-compiler-plugin-version>
+		<maven-jar-plugin-version>2.4</maven-jar-plugin-version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>xima</id>
+			<name>fc-plugin-dev</name>
+			<url>http://artifactory.xima-services.de/artifactory/fc-plugin-dev</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.xima.fc</groupId>
+			<artifactId>fc-logic</artifactId>
+			<version>${xfc-version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.xima.fc</groupId>
+			<artifactId>fc-logic</artifactId>
+			<version>${xfc-version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin-version}</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven-jar-plugin-version}</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<formcycle-version-requirement>${xfc-version}</formcycle-version-requirement>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

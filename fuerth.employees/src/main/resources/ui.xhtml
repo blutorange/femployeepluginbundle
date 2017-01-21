@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:xi="http://java.sun.com/jsf/composite/tags">
+
+
+	<xi:selectOneMenu required="false" var="state" itemValue="#{state}"
+		label="#{checkDatePluginBean.nameTargetStateExpire}" styleClass="top"
+		id="xm-plugin-check-date-target-state-expire"
+		title="#{checkDatePluginBean.descTargetStateExpire}"
+		value="#{checkDatePluginBean.targetStateExpire}"
+		converter="FCEntityConverter" itemLable="#{state.name}"
+		options="#{checkDatePluginBean.stateList}">
+		<f:selectItem itemLabel="do not switch states" itemValue="#{null}" />
+	</xi:selectOneMenu>
+
+	<xi:selectOneMenu required="false" var="state" itemValue="#{state}"
+		label="#{checkDatePluginBean.nameTargetStateNotExpire}"
+		styleClass="top" id="xm-plugin-check-date-target-state-not-expire"
+		title="#{checkDatePluginBean.descTargetStateNotExpire}"
+		value="#{checkDatePluginBean.targetStateNotExpire}"
+		converter="FCEntityConverter" itemLable="#{state.name}"
+		options="#{checkDatePluginBean.stateList}">
+		<f:selectItem itemLabel="do not switch states" itemValue="#{null}" />
+	</xi:selectOneMenu>
+
+	<xi:inputText
+		rendered="true"
+		formPlaceholder="true" styleClass="top" required="true"
+		label="#{checkDatePluginBean.nameExpireTime}"
+		title="#{checkDatePluginBean.descExpireTime}"
+		value="#{checkDatePluginBean.expireTime}">
+	</xi:inputText>
+	
+
+	<xi:inputText
+		rendered="true"
+		formPlaceholder="true" styleClass="top" required="true"
+		label="#{checkDatePluginBean.nameDueDate}"
+		title="#{checkDatePluginBean.descDueDate}"
+		value="#{checkDatePluginBean.dueDate}">
+	</xi:inputText>
+	
+	
+	<xi:inputText
+	    id="xi-plugin-check-date-due-date-format"
+		rendered="true"
+		formPlaceholder="false" styleClass="top" required="true"
+		label="#{checkDatePluginBean.nameDueDateFormat}"
+		title="#{checkDatePluginBean.descDueDateFormat}"
+		value="#{checkDatePluginBean.dueDateFormat}">
+	</xi:inputText>
+</ui:composition>
